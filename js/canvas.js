@@ -150,7 +150,7 @@ function render(){
 	  	ctx.font = "bold 50px consolas";
         ctx.fillStyle = "black";
         ctx.drawImage(messiAnime,10,198);
-        ctx.fillText("Messi Ball", 115,250);
+        ctx.fillText("Messi Game", 115,250);
         
         ctx.font = "bold 20px Segoe UI";
         ctx.fillText("Appuyez sur Espace pour commencer", 110,290);
