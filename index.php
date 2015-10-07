@@ -9,8 +9,8 @@
 <center><canvas id="canvasGame" height="500" width="500"></canvas></center>
 <script src="js/canvas.js"></script>
 
-<audio id="song"  autoplay >
-    <source src="audio/cl.mp3" controls>
+<audio id="song"  autoplay loop>
+    <source src="audio/mario.mp3" controls>
 </source>
   
 </audio>

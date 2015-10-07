@@ -41,116 +41,36 @@ var player = {
 	
 };
 
+/* 1 ballon dans le jeu*/
+var ball ={x:Math.random()*(width-20),y:Math.random()*(width-20),width:30,height:30};
+/*var ball1 ={x:Math.random()*(width-20),y:Math.random()*(width-20),width:30,height:30};*/
 
-var ball ={
+/*10 Bombes dans le jeu*/
 
-	x:Math.random()*(width-20),
-	y:Math.random()*(width-20),
-	width:30,
-	height:30
-};
+var bomb={x:Math.random()*(width-40),y:Math.random()*(width-40),width:30,height:30}
 
-/*7 Bombes dans le jeu*/
+var bomb1={x:150,y:150,width:30,height:30}
 
-var bomb={
+var bomb2={x:200,y:350,width:30,height:30}
 
-	x:Math.random()*(width-40),
-	y:Math.random()*(width-40),
-	width:30,
-	height:30
+var bomb3={x:400,y:350,width:30,height:30}
+
+var bomb4={x:440,y:190,width:30,height:30}
+
+var bomb5={x:100,y:350,width:30,height:30}
+
+var bomb6={x:80,y:120,width:30,height:30}
+
+var bomb7={x:130,y:240,width:30,height:30}
+
+var bomb8={x:60,y:150,width:30,height:30}
+
+var bomb9={x:300,y:200,width:30,height:30}
+
+var bomb10={x:80,y:150,width:30,height:30}
 
 
-}
 
-var bomb1={
-
-	x:150,
-	y:150,
-	width:30,
-	height:30
-
-}
-
-var bomb2={
-
-	x:200,
-	y:350,
-	width:30,
-	height:30
-
-}
-
-var bomb3={
-
-	x:400,
-	y:350,
-	width:30,
-	height:30
-
-}
-
-var bomb4={
-
-	x:440,
-	y:190,
-	width:30,
-	height:30
-
-}
-
-var bomb5={
-
-	x:100,
-	y:350,
-	width:30,
-	height:30
-
-}
-
-var bomb6={
-
-	x:80,
-	y:120,
-	width:30,
-	height:30
-
-}
-
-var bomb7={
-
-	x:130,
-	y:240,
-	width:30,
-	height:30
-
-}
-
-var bomb8={
-
-	x:60,
-	y:150,
-	width:30,
-	height:30
-
-}
-
-var bomb9={
-
-	x:300,
-	y:200,
-	width:30,
-	height:30
-
-}
-
-var bomb10={
-
-	x:80,
-	y:150,
-	width:30,
-	height:30
-
-}
 
 window.addEventListener("keydown",function(e){
 
@@ -190,6 +110,7 @@ function render(){
 	/*ctx.fillRect(ball.x,ball.y,ball.width,ball.height);*/
 	ctx.drawImage(ballAnime,ball.x,ball.y,ball.width,ball.height);
 
+
 	ctx.drawImage(bombAnime,bomb.x,bomb.y,bomb.width,bomb.height);
 
 
@@ -208,6 +129,7 @@ function render(){
 	ctx.font="bold 20px helvetica";
 	ctx.fillText("Vies: "+score,200,23);
 
+	
 	}
 
 
@@ -216,6 +138,15 @@ function render(){
 		ctx.save();
 		ctx.clearRect(0,0,width,height);
 		clearInterval(game);
+	  	
+	  	ctx.font = "bold 12px Segoe UI";
+	  	ctx.fillStyle = "white";
+	  	ctx.fillText("Made by K.AUCHOYBUR et W.EL HADI", 140,20);
+
+	  	ctx.font = "bold 12px Segoe UI";
+	  	ctx.fillStyle = "white";
+	  	ctx.fillText("MIAGE TEAM", 210,40);
+
 	  	ctx.font = "bold 50px consolas";
         ctx.fillStyle = "black";
         ctx.drawImage(messiAnime,10,198);
@@ -237,10 +168,11 @@ function render(){
         ctx.font = "bold 12px Segoe UI";
         ctx.fillText("Attention ! Une vie en moins si vous touchez une bombe", 90,434);
 
-          ctx.drawImage(coeurIcon,25,460);
+        ctx.drawImage(coeurIcon,25,460);
         ctx.font = "bold 12px Segoe UI";
         ctx.fillText("Disposez de 5 vies pour commencer", 90,470);
-        
+
+     
         
         if(keys[32]) gameState = "play";
 
@@ -258,6 +190,8 @@ function render(){
        
         
         if(keys[32]) gameState = "play";
+
+	
         }
 
 
@@ -271,7 +205,10 @@ function processBall(){
 
 	ball.x=Math.random()*(width-20);
 	ball.y=Math.random()*(width-20);
-	var audioCoin = new Audio('audio/coin.mp3');
+	
+	/*ball1.x=Math.random()*(width-20);
+	ball1.y=Math.random()*(width-20);*/
+	var audioCoin = new Audio('audio/coin.wav');
 	audioCoin.play();
 }
 
@@ -314,8 +251,8 @@ function processBomb(){
 	bomb10.x=Math.random()*(width+20);
 	bomb10.y=Math.random()*(width+20);
 
-	var audioCoin = new Audio('audio/coin.mp3');
-	audioCoin.play();
+	var audioBomb = new Audio('audio/bomb.mp3');
+	audioBomb.play();
 }
 
 function collision(first,second){
@@ -344,6 +281,7 @@ function update(){
 	if (player.y>580)player.x=580;
 
 	if(collision(player,ball)) processBall();
+
 	
 	if(collision(player,bomb)) processBomb();
 	if(collision(player,bomb1)) processBomb();
