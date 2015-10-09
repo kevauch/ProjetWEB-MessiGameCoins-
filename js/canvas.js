@@ -4,7 +4,7 @@ var keys=[];
 var width,height,speed;
 width=500;
 height=500;
-speed=10;
+speed=3;
 var score = 5;
 var gameState="menu";
 
@@ -16,7 +16,7 @@ var ballAnime = new Image();
 ballAnime.src="img/ball.png"
 
 var bombAnime = new Image();
-bombAnime.src ="img/bomb.png"
+bombAnime.src ="img/mertasac.png"
 
 var bombIcon = new Image();
 bombIcon.src="img/bombIcon.png"
@@ -35,8 +35,8 @@ var player = {
 
 	x:10,
 	y:10,
-	width:80,
-	height:80
+	width:50,
+	height:50
 	
 	
 };
@@ -47,27 +47,19 @@ var ball ={x:Math.random()*(width-20),y:Math.random()*(width-20),width:30,height
 
 /*10 Bombes dans le jeu*/
 
-var bomb={x:Math.random()*(width-40),y:Math.random()*(width-40),width:30,height:30}
+var bomb={x:Math.random()*(width-40),y:Math.random()*(width-40),width:60,height:60}
 
-var bomb1={x:150,y:150,width:30,height:30}
+var bomb1={x:150,y:150,width:60,height:60}
 
-var bomb2={x:200,y:350,width:30,height:30}
+var bomb2={x:200,y:350,width:60,height:60}
 
-var bomb3={x:400,y:350,width:30,height:30}
+var bomb3={x:400,y:350,width:60,height:60}
 
-var bomb4={x:440,y:190,width:30,height:30}
+var bomb4={x:440,y:190,width:60,height:60}
 
-var bomb5={x:100,y:350,width:30,height:30}
 
-var bomb6={x:80,y:120,width:30,height:30}
 
-var bomb7={x:130,y:240,width:30,height:30}
 
-var bomb8={x:60,y:150,width:30,height:30}
-
-var bomb9={x:300,y:200,width:30,height:30}
-
-var bomb10={x:80,y:150,width:30,height:30}
 
 
 
@@ -118,12 +110,8 @@ function render(){
 	ctx.drawImage(bombAnime,bomb2.x,bomb2.y,bomb2.width,bomb2.height);
 	ctx.drawImage(bombAnime,bomb3.x,bomb3.y,bomb3.width,bomb3.height);
 	ctx.drawImage(bombAnime,bomb4.x,bomb4.y,bomb4.width,bomb4.height);
-	ctx.drawImage(bombAnime,bomb5.x,bomb5.y,bomb5.width,bomb5.height);
-	ctx.drawImage(bombAnime,bomb6.x,bomb6.y,bomb6.width,bomb6.height);
-	ctx.drawImage(bombAnime,bomb7.x,bomb7.y,bomb7.width,bomb7.height);
-	ctx.drawImage(bombAnime,bomb8.x,bomb8.y,bomb8.width,bomb8.height);
-	ctx.drawImage(bombAnime,bomb9.x,bomb9.y,bomb9.width,bomb9.height);
-	ctx.drawImage(bombAnime,bomb10.x,bomb10.y,bomb10.width,bomb10.height);
+	
+	
 
 	ctx.fillStyle="white";
 	ctx.font="bold 20px helvetica";
@@ -231,25 +219,11 @@ function processBomb(){
 	bomb4.x=Math.random()*(width+20);
 	bomb4.y=Math.random()*(width+20);
 
-	bomb5.x=Math.random()*(width+20);
-	bomb5.y=Math.random()*(width+20);
+	
 
 
-	bomb6.x=Math.random()*(width+20);
-	bomb6.y=Math.random()*(width+20);
+	
 
-	bomb7.x=Math.random()*(width+20);
-	bomb7.y=Math.random()*(width+20);
-
-
-	bomb8.x=Math.random()*(width+20);
-	bomb8.y=Math.random()*(width+20);
-
-	bomb9.x=Math.random()*(width+20);
-	bomb9.y=Math.random()*(width+20);
-
-	bomb10.x=Math.random()*(width+20);
-	bomb10.y=Math.random()*(width+20);
 
 	var audioBomb = new Audio('audio/bomb.mp3');
 	audioBomb.play();
@@ -288,12 +262,7 @@ function update(){
 	if(collision(player,bomb2)) processBomb();
 	if(collision(player,bomb3)) processBomb();
 	if(collision(player,bomb4)) processBomb();
-	if(collision(player,bomb5)) processBomb();
-	if(collision(player,bomb6)) processBomb();
-	if(collision(player,bomb7)) processBomb();
-	if(collision(player,bomb8)) processBomb();
-	if(collision(player,bomb9)) processBomb();
-	if(collision(player,bomb10)) processBomb();
+
 
 
 }
