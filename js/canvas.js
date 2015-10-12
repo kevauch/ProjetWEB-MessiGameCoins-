@@ -215,7 +215,7 @@ function processBall(){
 
 function processBomb(){
 
-	score --;
+	score=score-5;
 	
 	bomb.x=Math.random()*(width-20);
 	bomb.y=Math.random()*(width-20);
