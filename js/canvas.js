@@ -10,13 +10,22 @@ var gameState="menu";
 
 
 var messiAnime = new Image();	
-messiAnime.src='img/messiAnime.png';
+messiAnime.src='img/messiAnime.png'
 
 var ballAnime = new Image();
 ballAnime.src="img/ball.png"
 
-var bombAnime = new Image();
-bombAnime.src ="img/mertasac.png"
+var bombAnime1 = new Image();
+bombAnime1.src ="img/mertasac.png"
+
+var bombAnime2 = new Image();
+bombAnime2.src ="img/vanbuyten.png"
+
+var bombAnime3 = new Image();
+bombAnime3.src ="img/marcelo.png"
+
+var bombAnime4 = new Image();
+bombAnime4.src ="img/ramos.png"
 
 var bombIcon = new Image();
 bombIcon.src="img/bombIcon.png"
@@ -103,13 +112,17 @@ function render(){
 	ctx.drawImage(ballAnime,ball.x,ball.y,ball.width,ball.height);
 
 
-	ctx.drawImage(bombAnime,bomb.x,bomb.y,bomb.width,bomb.height);
+	ctx.drawImage(bombAnime1,bomb1.x,bomb1.y,bomb1.width,bomb1.height);
+
+	ctx.drawImage(bombAnime2,bomb2.x,bomb2.y,bomb2.width,bomb2.height);
+
+	ctx.drawImage(bombAnime3,bomb3.x,bomb3.y,bomb3.width,bomb3.height);
+
+	ctx.drawImage(bombAnime4,bomb4.x,bomb4.y,bomb4.width,bomb4.height);
 
 
-	ctx.drawImage(bombAnime,bomb1.x,bomb1.y,bomb1.width,bomb1.height);
-	ctx.drawImage(bombAnime,bomb2.x,bomb2.y,bomb2.width,bomb2.height);
-	ctx.drawImage(bombAnime,bomb3.x,bomb3.y,bomb3.width,bomb3.height);
-	ctx.drawImage(bombAnime,bomb4.x,bomb4.y,bomb4.width,bomb4.height);
+
+	
 	
 	
 
