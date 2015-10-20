@@ -1,4 +1,4 @@
-	/*Fichier game.js*/
+/*Fichier game.js*/
 
 	/*Déclaration et positionnment du Joueur*/
 
@@ -200,10 +200,3 @@
 		speed=5;/*Vitesse du joueur principal*/
 		var score = 7;/*Score initial*/
 		var gameState="menu";/*Etat du jeu par defaut*/
-
-
-
-
-
-
-

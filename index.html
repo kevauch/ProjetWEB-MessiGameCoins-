@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="style/cssGame.css">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <title></title>
+</head>
+<body onload="init();">
+	<nav class="header-nav">
+    <center><div class="logo clickable"><i class="fa fa-futbol-o"></i> Messi Game</div></center>
+  </nav>
+
+  <center><canvas id="canvasGame" height="500" width="500"></canvas></center><!--Declaration Canvas-->
+  <script src="js/game.js"></script>
+  <script src="js/collision.js"></script>
+  <script src="js/main.js"></script>
+  <script src="jeu.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+<style>
+#myCanvas {
+  border: 1px solid red;
+  background-color:pink;
+}
+</style>
+<script>
+  var username = prompt("What's your name?");
+  var conversation, data, datasend, users;
+
+
+
+  // on load of page
+  window.addEventListener("load", function(){
+    // get handles on various GUI components
+    conversation = document.querySelector("#conversation");
+      data = document.querySelector("#data");
+      datasend = document.querySelector("#datasend");
+      users = document.querySelector("#users");
+
+  var socket = io.connect();
+
+  // on connection to server, ask for user's name with an anonymous callback
+  socket.on('connect', function(){
+    // call the server-side function 'adduser' and send one parameter (value of prompt)
+    socket.emit('adduser', username);
+  });
+
+  // listener, whenever the server emits 'updatechat', this updates the chat body 
+  socket.on('updatechat', function (username, data) {
+    var chatMessage = "<b>" + username + ":</b> " + data + "<br>";
+    conversation.innerHTML += chatMessage; 
+  });
+
+    // just one player moved
+  socket.on('updatepos', function (username, newPos) {
+    updatePlayerNewPos(newPos);
+  });
+
+  // listener, whenever the server emits 'updateusers', this updates the username list
+  socket.on('updateusers', function(listOfUsers) {
+    users.innerHTML = "";
+    for(var name in listOfUsers) {
+        var userLineOfHTML = '<div>' + name + '</div>';
+        users.innerHTML += userLineOfHTML;
+      }
+  });
+
+  // update the whole list of players, useful when a player
+  // connects or disconnects, we must update the whole list
+  socket.on('updatePlayers', function(listOfplayers) {
+    updatePlayers(listOfplayers);
+  });
+      // Listener for send button
+    datasend.addEventListener("click", function(evt) {
+          sendMessage();
+      });
+
+    // detect if enter key pressed in the input field
+      data.addEventListener("keypress", function(evt) {
+        // if pressed ENTER, then send
+        if(evt.keyCode == 13) {
+        this.blur();
+            sendMessage();
+        }
+      });
+
+      // sends the chat message to the server
+      function sendMessage() {
+        var message = data.value;
+      data.value = "";
+      // tell server to execute 'sendchat' and send along one parameter
+      socket.emit('sendchat', message);
+      }   
+  });
+
+</script>
+
+<p>
+<canvas width = 300 height = 300 id="myCanvas"></canvas>
+<p>
+<div style="float:left;width:100px;border-right:1px solid black;height:300px;padding:10px;overflow:scroll-y;">
+  <b>USERS</b>
+  <div id="users"></div>
+</div>
+<div style="float:left;width:300px;height:250px;overflow:scroll-y;padding:10px;">
+  <div id="conversation"></div>
+  <input id="data" style="width:200px;" />
+  <input type="button" id="datasend" value="send" />
+</div>
+
+  <audio id="song"  autoplay loop>
+
+    <source src="audio/mario.mp3" controls>
+    </source>
+
+  </audio>
+
+  <center><div id ="footer">K.AUCHOYBUR/W.EL HADI.M2 MIAGE NTDP.2015/2016</div></center>
+</body>
+</html>
